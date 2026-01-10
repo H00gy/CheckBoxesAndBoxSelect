@@ -20,7 +20,7 @@ public class boxSelection : MonoBehaviour
     {
         // when left mouse button is pressed and  mouse pointer is not over any object
         // I create four points at mouse position
-        if (Input.GetMouseButtonDown(0))// && !Object.mouseOverObject
+        if (Input.GetMouseButtonDown(0) && !ObjectSelected.mouseOverObject)
         {
             lineRenderer.positionCount = 4;
             initialMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -41,7 +41,7 @@ public class boxSelection : MonoBehaviour
         // mouse initial position when button was pressed for the first time
         // and its current position
 
-        if (Input.GetMouseButtonDown(0)) // && !Object.mouseOverObject
+        if (Input.GetMouseButtonDown(0) && !ObjectSelected.mouseOverObject)
         {
             currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             lineRenderer.SetPosition(0, new Vector2(initialMousePosition.x, initialMousePosition.y));
