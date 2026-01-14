@@ -13,6 +13,10 @@ public class ObjectSelected : MonoBehaviour
 
     private float dragOffSetX, dragOffSetY;
 
+    
+
+   
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,12 +29,13 @@ public class ObjectSelected : MonoBehaviour
     // when BoxSelections collider meets an object, object changes its color tint to red
     // and object is marked as selected now
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.GetComponent<boxSelection>())
         {
-            sr.color = new Color(1f, 0f, 0f, 1f);
+            sr.color = new Color(1f, 0f, 0f, 1f); // red
             objectSelected = true;
+            Debug.Log(this.gameObject.name + " is selected");
         }
         
     }
@@ -42,8 +47,7 @@ public class ObjectSelected : MonoBehaviour
     {
         if (other.gameObject.GetComponent <boxSelection>() && Input.GetMouseButton(0))
         {
-            sr.color = new Color(1f, 1f, 1f, 1f);
-            objectSelected = false;
+            Deselect();   
         }
     }
 
@@ -79,6 +83,7 @@ public class ObjectSelected : MonoBehaviour
             dragSelectedObjectAllowed = false;
             sr.color = new Color(1f,1f,1f, 1f);
         }
+        
     }
 
     private void OnMouseDown()
@@ -89,7 +94,9 @@ public class ObjectSelected : MonoBehaviour
     private void OnMouseUp()
     {
         mouseOverObject = false;
-        dragSelectedObjectAllowed = false; 
+        dragSelectedObjectAllowed = false;
+        Deselect();
+        Debug.Log("test");
     }
 
     private void OnMouseDrag()
@@ -104,6 +111,10 @@ public class ObjectSelected : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector2(mousePos.x - dragOffSetX, mousePos.y - dragOffSetY);
     }
-
+    private void Deselect()
+    {
+        sr.color = new Color(1f, 1f, 1f, 1f); //white
+        objectSelected = false;
+    }
 
 }

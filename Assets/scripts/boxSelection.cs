@@ -5,6 +5,7 @@ public class boxSelection : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector2 initialMousePosition, currentMousePosition;
     private BoxCollider2D boxCollider;
+    public bool boxOn;
 
     /// <summary>
     /// This script is primarily taken from the Youtube Channel Alexander Zotov
@@ -41,6 +42,7 @@ public class boxSelection : MonoBehaviour
             boxCollider = gameObject.AddComponent<BoxCollider2D>();
             boxCollider.isTrigger = true;
             boxCollider.offset = new Vector2(transform.position.x, transform.position.y); 
+            boxOn= true;
             
         }
         
@@ -80,6 +82,7 @@ public class boxSelection : MonoBehaviour
             lineRenderer.positionCount = 0;
             Destroy(boxCollider);
             transform.position = Vector3.zero;
+            boxOn = false;
         }
         
     }

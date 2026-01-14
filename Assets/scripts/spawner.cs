@@ -13,7 +13,7 @@ public class spawnCircle : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject spawnedCircle = Instantiate(triangle);
-            spawnedCircle.name = $"circle_{count}";
+            spawnedCircle.name = $"triangle_{count}";
             count++;
         }
     }
