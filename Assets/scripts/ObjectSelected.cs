@@ -13,6 +13,9 @@ public class ObjectSelected : MonoBehaviour
 
     private float dragOffSetX, dragOffSetY;
 
+    public static int tagCount = 0;
+    public int test;
+
     
 
    
@@ -33,9 +36,17 @@ public class ObjectSelected : MonoBehaviour
     {
         if (other.gameObject.GetComponent<boxSelection>())
         {
+            
+            if (tagCount > 0)
+            {
+                Deselect();
+            }
+            
             sr.color = new Color(1f, 0f, 0f, 1f); // red
             objectSelected = true;
             Debug.Log(this.gameObject.name + " is selected");
+            this.gameObject.tag= "selected";
+            tagCount++; 
         }
         
     }
@@ -51,8 +62,21 @@ public class ObjectSelected : MonoBehaviour
         }
     }
 
+    private void Deselect()
+    {
+        sr.color = new Color(1f, 1f, 1f, 1f); //white
+        objectSelected = false;
+        dragSelectedObjectAllowed = false;
+        this.gameObject.tag = "Untagged";
+        tagCount--;
+    }
+
+    
+
     private void Update()
     {
+
+        test = tagCount;
         // when left mouse button is clicked I need to get an offset between mouse position
         // and an object. This offset will help me to  drag Object/Objects from
         // its/their initial positions depending on mouse position without any "jumping" issues
@@ -79,9 +103,7 @@ public class ObjectSelected : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            objectSelected = false;
-            dragSelectedObjectAllowed = false;
-            sr.color = new Color(1f,1f,1f, 1f);
+            Deselect();
         }
         
     }
@@ -111,10 +133,6 @@ public class ObjectSelected : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector2(mousePos.x - dragOffSetX, mousePos.y - dragOffSetY);
     }
-    private void Deselect()
-    {
-        sr.color = new Color(1f, 1f, 1f, 1f); //white
-        objectSelected = false;
-    }
+    
 
 }
