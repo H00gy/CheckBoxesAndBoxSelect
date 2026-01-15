@@ -5,7 +5,7 @@ public class boxSelection : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector2 initialMousePosition, currentMousePosition;
     private BoxCollider2D boxCollider;
-    public bool boxOn;
+    
 
     /// <summary>
     /// This script is primarily taken from the Youtube Channel Alexander Zotov
