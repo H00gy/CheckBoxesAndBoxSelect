@@ -27,6 +27,7 @@ public class boxSelection : MonoBehaviour
         // when left mouse button is pressed and  mouse pointer is not over any object
         // I create four points at mouse position
         
+        
         if (Input.GetMouseButtonDown(0) && !ObjectSelected.mouseOverObject)
         {
             lineRenderer.positionCount = 5;
