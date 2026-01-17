@@ -15,11 +15,16 @@ public class ObjectSelected : MonoBehaviour
 
     private float dragOffSetX, dragOffSetY;
 
-    
 
-    
 
-   
+    /// <summary>
+    /// This script is primarily taken from the Youtube Channel Alexander Zotov,
+    /// My main modification was changing the script so that only one object can be 
+    /// selected at a time rather than all
+    /// Link: https://www.youtube.com/watch?v=vZ0T7mExfhY&list=PL6yItMct2ybov1Z3InuFPpFmFY61NtOvH&index=66
+    /// </summary>
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,7 +53,7 @@ public class ObjectSelected : MonoBehaviour
             currentSelection = this;
             sr.color = new Color(1f, 0f, 0f, 1f); // red
             objectSelected = true;
-            Debug.Log(this.gameObject.name + " is selected");
+            //Debug.Log(this.gameObject.name + " is selected");
             
             
         }
@@ -58,7 +63,7 @@ public class ObjectSelected : MonoBehaviour
     // when BoxSelection collider stops touching an object while left mouse button is still
     // being held down then object gets its normal color tint and marked as not selected
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other) 
     {
         if (other.gameObject.GetComponent <boxSelection>() && Input.GetMouseButton(0))
         {
