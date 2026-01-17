@@ -8,6 +8,7 @@ public class checkBoxConfirmation : MonoBehaviour
     public GameObject fake;
     public GameObject real;
     bool confirmation;
+    
 
     public void onClick()
     {
@@ -16,22 +17,25 @@ public class checkBoxConfirmation : MonoBehaviour
         {
             GameObject childObj = checkBoxTransform.gameObject;
 
-            if (childObj != null && childObj.GetComponent<Image>() != null)
+            if (childObj.GetComponentInChildren<Image>().sprite == null) // if no checkmarks
             {
-                if (childObj.GetComponent<Image>().sprite != null)
-                { 
-                    confirmation= true;
-                    return;
-                }
-                else
-                {
-                    confirmation = false;
-                }
+                confirmation = true; 
+            }
+            else
+            {
+                confirmation = false;
             }
         }
-        if (confirmation == true)
+        if (confirmation == true && ObjectSelected.currentSelection != null)
         {
-
+            
+            GameObject thisRTag = Instantiate(real);
+            thisRTag.transform.parent = ObjectSelected.currentSelection.transform;
+        }
+        else if(confirmation == false && ObjectSelected.currentSelection != null)
+        {
+            GameObject thisFTag = Instantiate(fake);
+            thisFTag.transform.parent = ObjectSelected.currentSelection.transform;
         }
     }
     

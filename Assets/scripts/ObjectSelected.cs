@@ -7,16 +7,15 @@ public class ObjectSelected : MonoBehaviour
 
     private bool objectSelected;
 
-    public static ObjectSelected currentSelection;
+    public static ObjectSelected currentSelection; 
 
-    public static bool dragSelectedObjectAllowed, mouseOverObject;
+    public static bool dragSelectedObjectAllowed, mouseOverObject; // controls if the selection rectangle is above the  dragged object
 
     private Vector2 mousePos;
 
     private float dragOffSetX, dragOffSetY;
 
-    public int tagCount = 0;
-    public int test;
+    
 
     
 
@@ -29,7 +28,7 @@ public class ObjectSelected : MonoBehaviour
         objectSelected = false;
         dragSelectedObjectAllowed = false;
         mouseOverObject = false;
-        tagCount= 0;
+        
     }
 
     // when BoxSelections collider meets an object, object changes its color tint to red
@@ -84,7 +83,7 @@ public class ObjectSelected : MonoBehaviour
     private void Update()
     {
 
-        Debug.Log("tagCount " + tagCount);
+        
         // when left mouse button is clicked I need to get an offset between mouse position
         // and an object. This offset will help me to  drag Object/Objects from
         // its/their initial positions depending on mouse position without any "jumping" issues
@@ -113,6 +112,8 @@ public class ObjectSelected : MonoBehaviour
         {
             Deselect();
         }
+
+        
         
     }
 
@@ -129,6 +130,7 @@ public class ObjectSelected : MonoBehaviour
         
     }
 
+    
     private void OnMouseDrag()
     {
         dragSelectedObjectAllowed = true; 
@@ -141,6 +143,7 @@ public class ObjectSelected : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector2(mousePos.x - dragOffSetX, mousePos.y - dragOffSetY);
     }
+    
     
 
 }
