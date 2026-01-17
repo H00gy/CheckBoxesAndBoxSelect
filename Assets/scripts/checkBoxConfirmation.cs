@@ -21,21 +21,25 @@ public class checkBoxConfirmation : MonoBehaviour
             if(grandChildObj.GetComponent<Image>().sprite != null)
             {
                 confirmation++;
-                Debug.Log("false");
+                //Debug.Log("false");
                 
             }
         }
-        if (confirmation == 0 && ObjectSelected.currentSelection != null) // real (no checkmarks)
+        if (confirmation == 0 && ObjectSelected.currentSelection != null && ObjectSelected.currentSelection.transform.childCount < 1) // real (no checkmarks)
         {
-            
+            Debug.Log("real");
             GameObject thisRTag = Instantiate(real);
             thisRTag.transform.parent = ObjectSelected.currentSelection.transform;
+            thisRTag.transform.position = ObjectSelected.currentSelection.transform.position;
         }
-        else if(confirmation > 0 && ObjectSelected.currentSelection != null) // fake (at least 1 checkmark)
+        else if(confirmation > 0 && ObjectSelected.currentSelection != null && ObjectSelected.currentSelection.transform.childCount < 1) // fake (at least 1 checkmark)
         {
+            Debug.Log("fake");
             GameObject thisFTag = Instantiate(fake);
             thisFTag.transform.parent = ObjectSelected.currentSelection.transform;
+            thisFTag.transform.position = ObjectSelected.currentSelection.transform.position;
         }
+        confirmation = 0; // resets confirmation
     }
     
 
